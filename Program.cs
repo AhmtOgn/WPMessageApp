@@ -1,7 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using WPMessageApp.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// YENİ KAYIT 1: DB Context'i Kaydetme
+builder.Services.AddDbContext<WpDbContext>(options =>
+{
+     // appsettings.json dosyasından "DefaultConnection" adlı bağlantı dizesini çekiyoruz
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 var app = builder.Build();
 
