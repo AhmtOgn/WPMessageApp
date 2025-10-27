@@ -482,3 +482,12 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# Uygulamaya özel dosyalar
+# Veritabanı dosyası (her makine kendi oluşturmalı)
+Data/messages.db
+
+# Kullanıcı tarafından yüklenen medya dosyaları (Çok büyür ve Git geçmişini şişirir)
+wwwroot/uploads/
+
+msedgedriver.exe
