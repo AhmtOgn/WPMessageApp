@@ -490,4 +490,5 @@ Data/messages.db
 # Kullanıcı tarafından yüklenen medya dosyaları (Çok büyür ve Git geçmişini şişirir)
 wwwroot/uploads/
 
+# Driver files
 msedgedriver.exe

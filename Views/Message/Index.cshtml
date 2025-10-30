@@ -1,0 +1,58 @@
+@model IEnumerable<WPMessageApp.Models.Message> 
+@{
+    ViewData["Title"] = "Gönderim Listesi";
+}
+
+<h1>WhatsApp Gönderim Listesi</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Yeni Mesaj Ekle</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MessageText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @(item.MessageText.Length > 50 ? item.MessageText.Substring(0, 50) + "..." : item.MessageText)
+                </td>
+                <td>
+                    @{
+                        string badgeClass = item.Status == "Sent" ? "badge bg-success" :
+                                            item.Status == "Failed" ? "badge bg-danger" :
+                                            "badge bg-warning";
+                    }
+                    <span class="@badgeClass">@Html.DisplayFor(modelItem => item.Status)</span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.MessageId">Detay</a> |
+                    <a asp-action="Delete" asp-route-id="@item.MessageId">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
